@@ -38,6 +38,17 @@ The Queue tab lets you:
 - **Schedule** specific start times
 - **Automate** with smart plug integration
 
+### Filament shown on queue cards
+
+Queue rows show the filament that the job is actually configured to use, not just the colour stored in the original 3MF:
+
+- **Model-based jobs** such as **Any P2S** show the selected filament override when one is set; otherwise they fall back to the selected plate's 3MF filament colour. No AMS slot is shown until a physical printer has been chosen.
+- **Jobs assigned to a specific printer** with a stored AMS mapping resolve that mapping against the printer's current AMS data and inventory binding, so the row can show the physical slot, bound spool identity and colour, for example `A1 · eSUN PLA Basic · Bone White`.
+- **Multiple AMS units** use the normal slot labels (`A1`–`A4`, `B1`–`B4`, and so on).
+- **Multi-colour jobs** show one compact swatch / label for each filament slot used by the selected plate.
+
+This makes it possible to verify the intended colour and, when known, the actual AMS slot directly from the queue without opening **Edit Queue Item**.
+
 !!! warning "SD Card Required"
     An SD card must be inserted in your printer for the print queue to work. Files are transferred to the printer's SD card when prints start.
 
