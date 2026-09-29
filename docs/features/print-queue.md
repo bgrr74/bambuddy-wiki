@@ -45,7 +45,7 @@ Queue rows show the filament that the job is actually configured to use, not jus
 - **Model-based jobs** such as **Any P2S** show the selected filament override when one is set; otherwise they fall back to the selected plate's 3MF filament colour. No AMS slot is shown until a physical printer has been chosen.
 - **Jobs assigned to a specific printer** with a stored AMS mapping resolve that mapping against the printer's current AMS data and inventory binding, so the row can show the physical slot, bound spool identity and colour, for example `A1 · eSUN PLA Basic · Bone White`.
 - **Multiple AMS units** use the normal slot labels (`A1`–`A4`, `B1`–`B4`, and so on).
-- **Multi-colour jobs** show one compact swatch / label for each filament slot used by the selected plate.
+- **Multi-colour jobs** show one swatch / label per filament for one- and two-colour plates. With more than two filaments the row switches to a compact group of colour swatches; hover the group to see the full filament details without expanding the queue card.
 
 This makes it possible to verify the intended colour and, when known, the actual AMS slot directly from the queue without opening **Edit Queue Item**.
 
