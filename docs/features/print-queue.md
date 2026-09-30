@@ -38,19 +38,19 @@ The Queue tab lets you:
 - **Schedule** specific start times
 - **Automate** with smart plug integration
 
-### Filament shown on queue cards
-
-Queue rows show the filament that the job is actually configured to use, not just the colour stored in the original 3MF:
-
-- **Model-based jobs** such as **Any P2S** show the selected filament override when one is set; otherwise they fall back to the selected plate's 3MF filament colour. No AMS slot is shown until a physical printer has been chosen.
-- **Jobs assigned to a specific printer** with a stored AMS mapping resolve that mapping against the printer's current AMS data and inventory binding, so the row can show the physical slot, bound spool identity and colour, for example `A1 · eSUN PLA Basic · Bone White`.
-- **Multiple AMS units** use the normal slot labels (`A1`–`A4`, `B1`–`B4`, and so on).
-- **Multi-colour jobs** show one swatch / label per filament for one- and two-colour plates. With more than two filaments the row switches to a compact group of colour swatches; hover the group to see the full filament details without expanding the queue card.
-
-This makes it possible to verify the intended colour and, when known, the actual AMS slot directly from the queue without opening **Edit Queue Item**.
-
 !!! warning "SD Card Required"
     An SD card must be inserted in your printer for the print queue to work. Files are transferred to the printer's SD card when prints start.
+
+### Filament shown on queue cards
+
+Since 1.2.6 ([#3132](https://github.com/maziggy/bambuddy/issues/3132)) each queue row shows a colour swatch and name for every filament the job uses, so you can check the next colours without opening **Edit Queue Item**. The row shows what the job is set to print with, not just the colour stored in the 3MF:
+
+- **Jobs mapped to AMS slots** on a specific printer show the slot, the spool assigned to it in Inventory (or Spoolman) and its colour, read from the printer's current AMS contents, for example `A1 · eSUN PLA Basic · Bone White`. Slots are labelled `A1`–`A4`, `B1`–`B4` and so on, `HT-A` for an AMS-HT, and `External` (or `Ext-L` / `Ext-R` on dual-nozzle printers) for the external spool. The mapping comes from [AMS Filament Mapping](#ams-filament-mapping).
+- **Jobs without a slot mapping** show the colour chosen when queueing, or otherwise the selected plate's colour from the 3MF, with no slot. That covers model-based jobs such as **Any P2S**, jobs on a specific printer with no stored mapping, and mapped jobs whose printer isn't currently reporting that slot.
+- **Up to two filaments** get a swatch and label each. With more than two, the row shows just the swatches; hover over them to see the full list (touch screens have no hover, so open the job instead).
+
+!!! warning "Emptied slots"
+    If a mapped slot has been emptied since the job was queued, the row says so in yellow, for example `A3 · Empty · Caramel`: the job will still be sent to that slot, so load a spool or edit the mapping. It uses the same check as the Printers page, so a slot shown there as `?` (typically a spool without an RFID tag) is not reported as empty. The external spool is never reported as empty, because the printer doesn't say whether one is loaded.
 
 ### Per-job ETA
 
